@@ -1,0 +1,23 @@
+name: Build Oppo A15s Kernel
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Build Kernel
+        uses: cyberc3dr/nGKI_Kernel_Build@rebase
+        with:
+          KERNEL_SOURCE: 'https://github.com'
+          KERNEL_SOURCE_BRANCH: 'main'
+          KERNEL_CONFIG: 'oppo6765_defconfig'
+          ARCH: 'arm64'
+          ENABLE_KERNELSU: true
+          KERNELSU_TAG: 'next'
+          ENABLE_KSU_LKM: false
+          ENABLE_KSU_SUSFS: true
